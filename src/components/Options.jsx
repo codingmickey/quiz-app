@@ -1,60 +1,58 @@
-import React from "react";
+import React, { useState } from "react";
 
-import Grid from "@material-ui/core/Grid";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 
-function Options() {
+function Options(props) {
+  const [value, setValue] = useState(null);
+
+  function handleChange(event) {
+    const value = event.target.value;
+    setValue(value);
+  }
+
   return (
-    <Grid class="mcq-options" item sm={6}>
+    <div>
       <FormControl component="fieldset">
         <RadioGroup
           aria-label="mcq"
-          name="gender1"
-          //   value={value}
-          //   onChange={handleChange}
+          name="mcqOptions"
+          value={value}
+          onChange={handleChange}
         >
-          <FormControlLabel
-            value="a"
-            control={<Radio color="primary" />}
-            label={
-              <span style={{ fontSize: "1.5rem", paddingLeft: "1%" }}>
-                Wamen
-              </span>
-            }
-          />
+          {(props.options[0] ? props.options[0] : []).map((option, index) => {
+            return (
+              <FormControlLabel
+                key={index}
+                value={option}
+                control={<Radio color="primary" />}
+                label={<span style={{ fontSize: "2rem" }}>{option}</span>}
+              />
+            );
+          })}
+          {/*           
           <FormControlLabel
             value="b"
             control={<Radio color="primary" />}
-            label={
-              <span style={{ fontSize: "1.5rem", paddingLeft: "1%" }}>
-                Male
-              </span>
-            }
+            label={<span style={{ fontSize: "1.5rem" }}>Male</span>}
           />
           <FormControlLabel
             value="c"
             control={<Radio color="primary" />}
-            label={
-              <span style={{ fontSize: "1.5rem", paddingLeft: "1%" }}>
-                Other
-              </span>
-            }
+            label={<span style={{ fontSize: "1.5rem" }}>Other</span>}
           />
           <FormControlLabel
             value="d`"
             control={<Radio color="primary" />}
             label={
-              <span style={{ fontSize: "1.5rem", paddingLeft: "1%" }}>
-                None of the above
-              </span>
+              <span style={{ fontSize: "1.5rem" }}>None of the above</span>
             }
-          />
+          /> */}
         </RadioGroup>
       </FormControl>
-    </Grid>
+    </div>
   );
 }
 
