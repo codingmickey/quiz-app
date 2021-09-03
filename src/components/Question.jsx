@@ -5,9 +5,10 @@ function Question(props) {
   return (
     <div>
       <h2>
-        Question 1<span style={{ fontSize: "large" }}>/5</span>
+        Question {props.index + 1}
+        <span style={{ fontSize: "large" }}>/5</span>
       </h2>
-      <p>{props.question[0]}</p>
+      <p>{props.question}</p>
     </div>
   );
 }

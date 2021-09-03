@@ -16,14 +16,7 @@ const client = axios.create({
 function App() {
   const [qna, setQna] = useState([]);
 
-  // useEffect(() => {
-  //   axios.get(url).then((response) => {
-  //     setQna(response.data.results);
-  //   });
-  // }, []);
-
-  const index = 0;
-
+  // Api data fetching
   useEffect(() => {
     async function getPost() {
       const response = await client.get();
@@ -32,6 +25,7 @@ function App() {
     getPost();
   }, []);
 
+  // Destructuring the questions and the options
   const [questions, incorrectOptions, correctOptions] = [
     qna.map((data) => {
       return data.question;
@@ -44,10 +38,10 @@ function App() {
     }),
   ];
 
+  // Shuffling the options
   const options = incorrectOptions.map((currentOptions, index) => {
     return [...currentOptions, correctOptions[index]];
   });
-
   const shuffledOptions = options.map((option) => {
     return option
       .map((value) => ({ value, sort: Math.random() }))
@@ -55,31 +49,28 @@ function App() {
       .map(({ value }) => value);
   });
 
+  // Keepin the track of the index of the question
+  const [index, setIndex] = useState(0);
+
+  function onChangingQ(key) {
+    if (key === "leftClick") {
+      setIndex(index - 1);
+    } else if (key === "rightClick") {
+      setIndex(index + 1);
+    }
+  }
+
+  // Keeping the track of scores
   const [score, setScore] = useState();
 
   return (
     <Box>
       <Header />
-      {/* {qna.map((result) => {
-        return ( 
-          <div>
-            <h2>{result.question}</h2>
-            <ul>
-              {result.incorrect_answers.map((options) => (
-                <li> {options} </li>
-              ))}
-              <li>{result.correct_answer}</li>
-            </ul>
-          </div>
-        );
-      })} */}
       <div className="question-box">
-        <Question index={index} question={questions} />
-        <Options index={index} options={shuffledOptions} />
-        <Icons />
+        <Question index={index} question={questions[index]} />
+        <Options index={index} options={shuffledOptions[index]} />
+        <Icons index={index} onChange={onChangingQ} />
       </div>
-
-      {/* <Display questions={questions} shuffledOptions={shuffledOptions} /> */}
     </Box>
   );
 }

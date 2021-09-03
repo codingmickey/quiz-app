@@ -22,7 +22,7 @@ function Options(props) {
           value={value}
           onChange={handleChange}
         >
-          {(props.options[0] ? props.options[0] : []).map((option, index) => {
+          {(props.options ? props.options : []).map((option, index) => {
             return (
               <FormControlLabel
                 key={index}

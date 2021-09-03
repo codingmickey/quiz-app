@@ -1,6 +1,6 @@
 body {
   background-color: #242038;
-  color: #242038;
+  color: #e1e5f2;
   font-family: "Roboto", sans-serif;
 }
 
@@ -45,5 +45,5 @@ h2 {
 .button-container {
   position: absolute;
   bottom: 5%;
-  right: 20%;
+  right: 10%;
 }
