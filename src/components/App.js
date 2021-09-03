@@ -8,12 +8,19 @@ import Header from "./Header";
 import Question from "./Question";
 import Options from "./Options";
 import Icons from "./Icons";
+import Starting from "./Starting";
 
 const client = axios.create({
   baseURL: "https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple",
 });
 
 function App() {
+  // Starting the quiz
+  const [isStarted, setIsStarted] = useState(false);
+  function onStart() {
+    setIsStarted(true);
+  }
+
   const [qna, setQna] = useState([]);
 
   // Api data fetching
@@ -39,15 +46,20 @@ function App() {
   ];
 
   // Shuffling the options
-  const options = incorrectOptions.map((currentOptions, index) => {
+  let options = incorrectOptions.map((currentOptions, index) => {
     return [...currentOptions, correctOptions[index]];
   });
-  const shuffledOptions = options.map((option) => {
-    return option
-      .map((value) => ({ value, sort: Math.random() }))
-      .sort((a, b) => a.sort - b.sort)
-      .map(({ value }) => value);
-  });
+  // let shuffledOptions = ;
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    options = options.map((option) => {
+      return option
+        .map((value) => ({ value, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map(({ value }) => value);
+    });
+  }, [options]);
 
   // Keepin the track of the index of the question
   const [index, setIndex] = useState(0);
@@ -63,14 +75,26 @@ function App() {
   // Keeping the track of scores
   const [score, setScore] = useState();
 
+  // Selecting options of user
+  const [userSelected, setUserSelected] = useState({});
+
   return (
     <Box>
       <Header />
-      <div className="question-box">
-        <Question index={index} question={questions[index]} />
-        <Options index={index} options={shuffledOptions[index]} />
-        <Icons index={index} onChange={onChangingQ} />
-      </div>
+      {isStarted ? (
+        <div className="box">
+          <Question index={index} question={questions[index]} />
+          <Options
+            index={index}
+            options={options[index]}
+            changeOption={setUserSelected}
+            userSelected={userSelected}
+          />
+          <Icons index={index} onChange={onChangingQ} />
+        </div>
+      ) : (
+        <Starting onStart={onStart} />
+      )}
     </Box>
   );
 }

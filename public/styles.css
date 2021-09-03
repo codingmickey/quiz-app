@@ -21,8 +21,12 @@ h2 {
 }
 /* #56E39F */
 
-/* Question and options styles */
-.question-box {
+/* Starting Page Styling */
+.start {
+  text-align: center;
+}
+/* box styles */
+.box {
   position: relative;
   background-color: #fc6471;
   width: 50%;

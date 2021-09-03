@@ -9,9 +9,14 @@ function Options(props) {
   const [value, setValue] = useState(null);
 
   function handleChange(event) {
-    const value = event.target.value;
-    setValue(value);
+    const currentValue = event.target.value;
+    setValue(currentValue);
+    props.changeOption((prevValue) => {
+      return { ...prevValue, [props.index]: currentValue };
+    });
   }
+
+  console.log(props.userSelected[props.index]);
 
   return (
     <div>
@@ -22,34 +27,17 @@ function Options(props) {
           value={value}
           onChange={handleChange}
         >
-          {(props.options ? props.options : []).map((option, index) => {
+          {(props.options ? props.options : []).map((option, i) => {
             return (
               <FormControlLabel
-                key={index}
+                key={i}
                 value={option}
-                control={<Radio color="primary" />}
+                checked={option === props.userSelected[props.index]}
+                control={<Radio color="primary" value={option} />}
                 label={<span style={{ fontSize: "2rem" }}>{option}</span>}
               />
             );
           })}
-          {/*           
-          <FormControlLabel
-            value="b"
-            control={<Radio color="primary" />}
-            label={<span style={{ fontSize: "1.5rem" }}>Male</span>}
-          />
-          <FormControlLabel
-            value="c"
-            control={<Radio color="primary" />}
-            label={<span style={{ fontSize: "1.5rem" }}>Other</span>}
-          />
-          <FormControlLabel
-            value="d`"
-            control={<Radio color="primary" />}
-            label={
-              <span style={{ fontSize: "1.5rem" }}>None of the above</span>
-            }
-          /> */}
         </RadioGroup>
       </FormControl>
     </div>

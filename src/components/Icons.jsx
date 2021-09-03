@@ -16,7 +16,7 @@ function Icons(props) {
             onClick={() => {
               props.onChange("leftClick");
             }}
-            style={{ fontSize: "4rem", color: "#242038" }}
+            style={{ fontSize: "4rem", color: "#242038", cursor: "pointer" }}
           />
         )}
         {props.index < 4 && (
@@ -24,11 +24,11 @@ function Icons(props) {
             onClick={() => {
               props.onChange("rightClick");
             }}
-            style={{ fontSize: "4rem", color: "#242038" }}
+            style={{ fontSize: "4rem", color: "#242038", cursor: "pointer" }}
           />
         )}
       </div>
-      {props.index == 4 && (
+      {props.index === 4 && (
         <div className="button-container">
           <Button
             onClick={onSubmit}
