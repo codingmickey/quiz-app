@@ -23,8 +23,18 @@ function App() {
   }
   const [isCompleted, setIsCompleted] = useState(false);
   function onComplete() {
-    setIsCompleted(true);
-    updateScore();
+    let i;
+    for (i = 0; i < 5; i++) {
+      if (!userSelected.hasOwnProperty(i)) {
+        window.alert("Please Complete Question No. " + Number(i + 1));
+        setIndex(i);
+        break;
+      }
+    }
+    if (i === 5) {
+      setIsCompleted(true);
+      updateScore();
+    }
   }
 
   const [qna, setQna] = useState([]);
@@ -51,7 +61,7 @@ function App() {
     }),
   ];
 
-  console.log(correctOptions);
+  // console.log(correctOptions);
 
   // Shuffling the options
   let options = incorrectOptions.map((currentOptions, index) => {
