@@ -4,7 +4,8 @@ import Question from "./Question";
 import Options from "./Options";
 
 function Answers(props) {
-  console.log(props.userSelected[1]);
+  const isCorrect = props.correctAnswers;
+
   return (
     <div className="box">
       <h1 style={{ fontSize: "2.5rem" }}> Test Completed!</h1>
@@ -22,7 +23,12 @@ function Answers(props) {
         return (
           <div className>
             <hr />
-            <Question index={index} question={question} />
+            <Question
+              index={index}
+              question={question}
+              isCorrect={isCorrect}
+              tag="answers"
+            />
             <Options
               path="answers"
               index={index}
@@ -30,7 +36,9 @@ function Answers(props) {
               options={props.options[index]}
               userSelected={props.userSelected}
             />
-            <p>Correct Answer: {props.correctOptions[index]}</p>
+            {!(isCorrect ? isCorrect : []).includes(index) && (
+              <p>Correct Answer: {props.correctOptions[index]}</p>
+            )}
           </div>
         );
       })}

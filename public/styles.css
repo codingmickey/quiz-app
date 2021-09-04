@@ -1,6 +1,6 @@
 body {
   background-color: #050505;
-  color: #ece2d0;
+  color: #37371f;
   font-family: "Roboto", sans-serif;
 }
 
@@ -28,7 +28,7 @@ h2 {
 /* box styles */
 .box {
   position: relative;
-  background-color: #e84855;
+  background-color: #ffe5d4;
   width: 50%;
   height: 10%;
   margin: 5% auto 0;

@@ -81,6 +81,7 @@ function App() {
 
   // Keeping the track of scores
   const [score, setScore] = useState();
+  const [userCorrect, setUserCorrect] = useState([]);
 
   function updateScore() {
     setScore(() => {
@@ -88,6 +89,9 @@ function App() {
       correctOptions.forEach((correctOption, index) => {
         if (correctOption === userSelected[index]) {
           currentValue++;
+          setUserCorrect((prevValue) => {
+            return [...prevValue, index];
+          });
         }
       });
       return currentValue;
@@ -109,6 +113,7 @@ function App() {
             userSelected={userSelected}
             correctOptions={correctOptions}
             changeOption={setUserSelected}
+            correctAnswers={userCorrect}
           />
         ) : (
           <div className="box">

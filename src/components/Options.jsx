@@ -18,8 +18,6 @@ function Options(props) {
     }
   }
 
-  console.log(props.userSelected[props.index]);
-
   return (
     <div>
       <FormControl component="fieldset">
