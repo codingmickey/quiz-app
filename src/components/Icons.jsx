@@ -30,7 +30,7 @@ function Icons(props) {
             onClick={() => props.onSubmit()}
             variant="contained"
             size="large"
-            style={{ backgroundColor: "#56E39F" }}
+            style={{ backgroundColor: "#77FF94" }}
           >
             Submit
           </Button>

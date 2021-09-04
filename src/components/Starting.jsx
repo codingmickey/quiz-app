@@ -11,7 +11,7 @@ function Starting(props) {
         <Button
           variant="contained"
           size="large"
-          style={{ backgroundColor: "#48ACF0", color: "#e1e5f2" }}
+          style={{ backgroundColor: "#7AFDD6", color: "#050505" }}
         >
           Start!
         </Button>
