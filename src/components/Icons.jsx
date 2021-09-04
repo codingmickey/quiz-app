@@ -4,10 +4,6 @@ import ChevronLeftRoundedIcon from "@material-ui/icons/ChevronLeftRounded";
 import { Button } from "@material-ui/core";
 
 function Icons(props) {
-  function onSubmit() {
-    console.log("Submit the test");
-  }
-
   return (
     <div>
       <div className="icons-container">
@@ -31,7 +27,7 @@ function Icons(props) {
       {props.index === 4 && (
         <div className="button-container">
           <Button
-            onClick={onSubmit}
+            onClick={() => props.onSubmit()}
             variant="contained"
             size="large"
             style={{ backgroundColor: "#56E39F" }}

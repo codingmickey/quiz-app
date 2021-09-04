@@ -11,9 +11,11 @@ function Options(props) {
   function handleChange(event) {
     const currentValue = event.target.value;
     setValue(currentValue);
-    props.changeOption((prevValue) => {
-      return { ...prevValue, [props.index]: currentValue };
-    });
+    if (props.path !== "answers") {
+      props.changeOption((prevValue) => {
+        return { ...prevValue, [props.index]: currentValue };
+      });
+    }
   }
 
   console.log(props.userSelected[props.index]);

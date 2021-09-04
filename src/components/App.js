@@ -9,6 +9,7 @@ import Question from "./Question";
 import Options from "./Options";
 import Icons from "./Icons";
 import Starting from "./Starting";
+import Answers from "./Answers";
 
 const client = axios.create({
   baseURL: "https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple",
@@ -19,6 +20,11 @@ function App() {
   const [isStarted, setIsStarted] = useState(false);
   function onStart() {
     setIsStarted(true);
+  }
+  const [isCompleted, setIsCompleted] = useState(false);
+  function onComplete() {
+    setIsCompleted(true);
+    updateScore();
   }
 
   const [qna, setQna] = useState([]);
@@ -45,11 +51,12 @@ function App() {
     }),
   ];
 
+  console.log(correctOptions);
+
   // Shuffling the options
   let options = incorrectOptions.map((currentOptions, index) => {
     return [...currentOptions, correctOptions[index]];
   });
-  // let shuffledOptions = ;
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -75,6 +82,18 @@ function App() {
   // Keeping the track of scores
   const [score, setScore] = useState();
 
+  function updateScore() {
+    setScore(() => {
+      let currentValue = 0;
+      correctOptions.forEach((correctOption, index) => {
+        if (correctOption === userSelected[index]) {
+          currentValue++;
+        }
+      });
+      return currentValue;
+    });
+  }
+
   // Selecting options of user
   const [userSelected, setUserSelected] = useState({});
 
@@ -82,16 +101,27 @@ function App() {
     <Box>
       <Header />
       {isStarted ? (
-        <div className="box">
-          <Question index={index} question={questions[index]} />
-          <Options
-            index={index}
-            options={options[index]}
-            changeOption={setUserSelected}
+        isCompleted ? (
+          <Answers
+            finalScore={score}
+            questions={questions}
+            options={options}
             userSelected={userSelected}
+            correctOptions={correctOptions}
+            changeOption={setUserSelected}
           />
-          <Icons index={index} onChange={onChangingQ} />
-        </div>
+        ) : (
+          <div className="box">
+            <Question index={index} question={questions[index]} />
+            <Options
+              index={index}
+              options={options[index]}
+              changeOption={setUserSelected}
+              userSelected={userSelected}
+            />
+            <Icons index={index} onChange={onChangingQ} onSubmit={onComplete} />
+          </div>
+        )
       ) : (
         <Starting onStart={onStart} />
       )}
