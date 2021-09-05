@@ -1,7 +1,7 @@
 body {
   background-color: #050505;
   color: #37371f;
-  font-family: "Roboto", sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 p {
@@ -30,7 +30,7 @@ hr {
 
 /* Starting Page Styling */
 .start {
-  text-align: center;
+  text-align: left;
 }
 /* box styles */
 .box {
@@ -42,7 +42,7 @@ hr {
   padding: 1% 4% 5%;
   border-radius: 40px;
   /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  box-shadow: rgba(255, 200, 156, 0.44) 0px 7px 29px 0px;
 }
 
 /* Icon styling */
@@ -62,4 +62,18 @@ hr {
   position: absolute;
   bottom: 5%;
   right: 7%;
+}
+
+@media only screen and (max-width: 800px) {
+  .box {
+    position: relative;
+    background-color: #ffe5d4;
+    width: 90%;
+    height: 10%;
+    margin: 5% auto 0;
+    padding: 1% 4% 17%;
+    border-radius: 40px;
+    /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
 }

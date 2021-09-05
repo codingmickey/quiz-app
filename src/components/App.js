@@ -11,10 +11,6 @@ import Icons from "./Icons";
 import Starting from "./Starting";
 import Answers from "./Answers";
 
-const client = axios.create({
-  baseURL: "https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple",
-});
-
 function App() {
   // Starting the quiz
   const [isStarted, setIsStarted] = useState(false);
@@ -24,14 +20,14 @@ function App() {
   const [isCompleted, setIsCompleted] = useState(false);
   function onComplete() {
     let i;
-    for (i = 0; i < 5; i++) {
+    for (i = 0; i < questions.length; i++) {
       if (!userSelected.hasOwnProperty(i)) {
         window.alert("Please Complete Question No. " + Number(i + 1));
         setIndex(i);
         break;
       }
     }
-    if (i === 5) {
+    if (i === questions.length) {
       setIsCompleted(true);
       updateScore();
     }
@@ -40,6 +36,10 @@ function App() {
   const [qna, setQna] = useState([]);
 
   // Api data fetching
+  const client = axios.create({
+    baseURL: "https://opentdb.com/api.php?amount=5&difficulty=easy",
+  });
+
   useEffect(() => {
     async function getPost() {
       const response = await client.get();
@@ -127,14 +127,19 @@ function App() {
           />
         ) : (
           <div className="box">
-            <Question index={index} question={questions[index]} />
+            <Question index={index} questions={questions} />
             <Options
               index={index}
               options={options[index]}
               changeOption={setUserSelected}
               userSelected={userSelected}
             />
-            <Icons index={index} onChange={onChangingQ} onSubmit={onComplete} />
+            <Icons
+              index={index}
+              numberOfQuestions={questions.length}
+              onChange={onChangingQ}
+              onSubmit={onComplete}
+            />
           </div>
         )
       ) : (

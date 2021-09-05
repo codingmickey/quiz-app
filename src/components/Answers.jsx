@@ -19,15 +19,15 @@ function Answers(props) {
       <h2>Your Selected Options and the Correct Answers are given below 👇</h2>
       <br />
       <br />
-      {props.questions.map((question, index) => {
+      {props.questions.map((index) => {
         return (
           <div className>
             <hr />
             <Question
               index={index}
-              question={question}
               isCorrect={isCorrect}
               tag="answers"
+              questions={props.questions}
             />
             <Options
               path="answers"

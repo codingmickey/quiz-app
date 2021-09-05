@@ -5,11 +5,17 @@ import { Button } from "@material-ui/core";
 
 function Icons(props) {
   document.addEventListener("keydown", (event) => {
-    if (props.index < 4 && event.key === "ArrowRight") {
+    if (
+      props.index < props.numberOfQuestions - 1 &&
+      event.key === "ArrowRight"
+    ) {
       props.onChange("rightClick");
     } else if (props.index > 0 && event.key === "ArrowLeft") {
       props.onChange("leftClick");
-    } else if (props.index === 4 && event.key === "Enter") {
+    } else if (
+      props.index === props.numberOfQuestions - 1 &&
+      event.key === "Enter"
+    ) {
       props.onSubmit();
     }
   });
@@ -26,7 +32,7 @@ function Icons(props) {
         )}
       </div>
       <div className="next">
-        {props.index < 4 && (
+        {props.index < props.numberOfQuestions - 1 && (
           <ChevronRightRoundedIcon
             onClick={() => {
               props.onChange("rightClick");
@@ -36,7 +42,7 @@ function Icons(props) {
         )}
       </div>
 
-      {props.index === 4 && (
+      {props.index === props.numberOfQuestions - 1 && (
         <div className="button-container">
           <Button
             onClick={() => props.onSubmit()}

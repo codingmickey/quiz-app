@@ -1,7 +1,11 @@
 import React from "react";
+import he from "he";
 
 function Question(props) {
   // props.questions;  [questions]
+
+  // console.log(props.questions);
+
   const isCorrect = (props.isCorrect ? props.isCorrect : []).includes(
     props.index
   );
@@ -17,9 +21,9 @@ function Question(props) {
     <div>
       <h2>
         Question {props.index + 1}
-        <span style={{ fontSize: "large" }}>/5</span>
+        <span style={{ fontSize: "large" }}>/{props.questions.length}</span>
       </h2>
-      <p style={selectedStyles}>{props.question}</p>
+      <p style={selectedStyles}>{he.decode(props.questions[props.index])}</p>
     </div>
   );
 }

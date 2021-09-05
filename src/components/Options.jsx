@@ -5,6 +5,8 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 
+import he from "he";
+
 function Options(props) {
   const [value, setValue] = useState(null);
 
@@ -34,7 +36,9 @@ function Options(props) {
                 value={option}
                 checked={option === props.userSelected[props.index]}
                 control={<Radio color="primary" value={option} />}
-                label={<span style={{ fontSize: "2rem" }}>{option}</span>}
+                label={
+                  <span style={{ fontSize: "2rem" }}>{he.decode(option)}</span>
+                }
               />
             );
           })}
