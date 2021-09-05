@@ -2,6 +2,11 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 
 function Starting(props) {
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      props.onStart();
+    }
+  });
   return (
     <div className="box start">
       <h1 style={{ fontSize: "3rem" }}>Welcome!🥳</h1>

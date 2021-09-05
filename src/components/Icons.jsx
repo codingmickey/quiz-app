@@ -4,9 +4,18 @@ import ChevronLeftRoundedIcon from "@material-ui/icons/ChevronLeftRounded";
 import { Button } from "@material-ui/core";
 
 function Icons(props) {
+  document.addEventListener("keydown", (event) => {
+    if (props.index < 4 && event.key === "ArrowRight") {
+      props.onChange("rightClick");
+    } else if (props.index > 0 && event.key === "ArrowLeft") {
+      props.onChange("leftClick");
+    } else if (props.index === 4 && event.key === "Enter") {
+      props.onSubmit();
+    }
+  });
   return (
     <div>
-      <div className="icons-container">
+      <div className="prev">
         {props.index > 0 && (
           <ChevronLeftRoundedIcon
             onClick={() => {
@@ -15,6 +24,8 @@ function Icons(props) {
             style={{ fontSize: "4rem", color: "#242038", cursor: "pointer" }}
           />
         )}
+      </div>
+      <div className="next">
         {props.index < 4 && (
           <ChevronRightRoundedIcon
             onClick={() => {
@@ -24,6 +35,7 @@ function Icons(props) {
           />
         )}
       </div>
+
       {props.index === 4 && (
         <div className="button-container">
           <Button
