@@ -19,7 +19,7 @@ function Answers(props) {
       <h2>Your Selected Options and the Correct Answers are given below 👇</h2>
       <br />
       <br />
-      {props.questions.map((index) => {
+      {props.questions.map((question, index) => {
         return (
           <div className>
             <hr />
