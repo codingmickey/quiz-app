@@ -1,5 +1,5 @@
-import React from "react";
-import he from "he";
+import React from 'react';
+import he from 'he';
 
 function Question(props) {
   // props.questions;  [questions]
@@ -10,9 +10,9 @@ function Question(props) {
     props.index
   );
   let selectedStyles;
-  if (props.tag === "answers") {
+  if (props.tag === 'answers') {
     selectedStyles = {
-      color: isCorrect ? "#72B01D" : "#E84855",
+      color: isCorrect ? '#72B01D' : '#E84855',
     };
   } else {
     selectedStyles = {};
@@ -21,7 +21,7 @@ function Question(props) {
     <div>
       <h2>
         Question {props.index + 1}
-        <span style={{ fontSize: "large" }}>/{props.questions.length}</span>
+        <span style={{ fontSize: 'large' }}>/{props.questions.length}</span>
       </h2>
       <p style={selectedStyles}>{he.decode(props.questions[props.index])}</p>
     </div>

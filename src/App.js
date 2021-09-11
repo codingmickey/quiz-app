@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import Box from "@material-ui/core/Box";
+import React, { useEffect, useState } from 'react';
+import Box from '@material-ui/core/Box';
 
-import axios from "axios";
+import axios from 'axios';
 
-import Header from "./Header";
+import Header from './components/Header/Header';
 
-import Question from "./Question";
-import Options from "./Options";
-import Icons from "./Icons";
-import Starting from "./Starting";
-import Answers from "./Answers";
+import Question from './components/Display/Question';
+import Options from './components/Display/Options';
+import Icons from './components/Icons/Icons';
+import Starting from './components/Starting';
+import Answers from './components/Answers';
 
 function App() {
   // Starting the quiz
@@ -22,7 +22,7 @@ function App() {
     let i;
     for (i = 0; i < questions.length; i++) {
       if (!userSelected.hasOwnProperty(i)) {
-        window.alert("Please Complete Question No. " + Number(i + 1));
+        window.alert(`Please Complete Question No. ${Number(i + 1)}`);
         setIndex(i);
         break;
       }
@@ -37,7 +37,7 @@ function App() {
 
   // Api data fetching
   const client = axios.create({
-    baseURL: "https://opentdb.com/api.php?amount=5&difficulty=easy",
+    baseURL: 'https://opentdb.com/api.php?amount=5&difficulty=easy',
   });
 
   useEffect(() => {
@@ -82,9 +82,9 @@ function App() {
   const [index, setIndex] = useState(0);
 
   function onChangingQ(key) {
-    if (key === "leftClick") {
+    if (key === 'leftClick') {
       setIndex(index - 1);
-    } else if (key === "rightClick") {
+    } else if (key === 'rightClick') {
       setIndex(index + 1);
     }
   }

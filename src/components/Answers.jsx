@@ -1,19 +1,21 @@
-import React from "react";
+import React from 'react';
 
-import Question from "./Question";
-import Options from "./Options";
+import Question from './Display/Question';
+import Options from './Display/Options';
+
+// import { Question, Options } from './Display/';
 
 function Answers(props) {
   const isCorrect = props.correctAnswers;
 
   return (
     <div className="box">
-      <h1 style={{ fontSize: "2.5rem" }}> Test Completed!</h1>
+      <h1 style={{ fontSize: '2.5rem' }}> Test Completed!</h1>
       <p>
-        Your score is{" "}
-        <span style={{ color: "#242038", fontWeight: "700" }}>
+        Your score is{' '}
+        <span style={{ color: '#242038', fontWeight: '700' }}>
           {props.finalScore}
-        </span>{" "}
+        </span>{' '}
         {props.finalScore > 2 ? <span>😍</span> : <span>😥</span>}
       </p>
       <h2>Your Selected Options and the Correct Answers are given below 👇</h2>
